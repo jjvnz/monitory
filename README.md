@@ -12,10 +12,11 @@ El **Monitor de Sistema** es una aplicación web diseñada para supervisar y vis
 - **Historial de Datos**: Proporciona gráficos históricos de los recursos del sistema.
 - **Alertas Configurables**: Permite configurar umbrales para recibir alertas cuando el uso de recursos excede los límites definidos.
 - **Interfaz de Usuario Intuitiva**: Ofrece una interfaz gráfica simple para monitorear y ajustar configuraciones.
+- **Modularidad y Mantenibilidad**: Estructura de código organizada en módulos y patrones de diseño para facilitar el mantenimiento y la extensión.
 
 ## Tecnologías Utilizadas
 
-- **Frontend**: HTML, CSS, JavaScript, Chart.js, SweetAlert2
+- **Frontend**: HTML, CSS (Tailwind CSS), JavaScript, Chart.js, SweetAlert2
 - **Backend**: Python, Flask, SQLite, psutil
 
 ## Instalación
@@ -23,7 +24,7 @@ El **Monitor de Sistema** es una aplicación web diseñada para supervisar y vis
 ### Requisitos
 
 - Python 3.x
-- Node.js (para manejar dependencias frontend si es necesario)
+- Node.js (opcional, para manejar dependencias frontend si es necesario)
 - SQLite (para la base de datos)
 
 ### Pasos para la Instalación
@@ -37,7 +38,7 @@ El **Monitor de Sistema** es una aplicación web diseñada para supervisar y vis
 
 2. **Instalar Dependencias Backend**
 
-    Crear un entorno virtual y activar:
+    Crear un entorno virtual y activarlo:
 
     ```bash
     python -m venv venv
@@ -60,14 +61,14 @@ El **Monitor de Sistema** es una aplicación web diseñada para supervisar y vis
 
 4. **Inicializar la Base de Datos**
 
-    La base de datos SQLite se crea automáticamente cuando se ejecuta la aplicación por primera vez. Asegúrate de que `metrics.db` está disponible en el directorio del proyecto.
+    La base de datos SQLite se crea automáticamente cuando se ejecuta la aplicación por primera vez. Asegúrate de que `metrics.db` esté disponible en el directorio del proyecto. La estructura de la base de datos se configura automáticamente en el archivo `app/models/db.py`.
 
 5. **Ejecutar la Aplicación**
 
-    Iniciar el servidor Flask:
+    Iniciar el servidor Flask usando el archivo `.flaskenv` para la configuración:
 
     ```bash
-    python app.py
+    flask run
     ```
 
     La aplicación estará disponible en `http://127.0.0.1:5000`.
@@ -85,6 +86,15 @@ El **Monitor de Sistema** es una aplicación web diseñada para supervisar y vis
 3. **Ver Datos Históricos**
 
     Accede a la sección de datos históricos para ver gráficos de uso de recursos basados en datos almacenados en la base de datos.
+
+## Estructura del Proyecto
+
+- **app/routes.py**: Define las rutas y lógica de la aplicación.
+- **app/metrics.py**: Contiene funciones para obtener y guardar métricas.
+- **app/utils.py**: Funciones utilitarias, como obtener datos históricos.
+- **app/models/db.py**: Maneja la base de datos y su esquema.
+- **app/templates/dashboard.html**: Plantilla HTML para el dashboard.
+- **app/static/js/scripts.js**: JavaScript para la interacción con el frontend.
 
 ## Contribuciones
 
