@@ -1,5 +1,7 @@
 # Monitor de Sistema
 
+![Monitoy-Proyect-Flask-HTML-Tailwind-CSS](https://github.com/user-attachments/assets/118ea2a0-dd64-49a7-b480-f1de489b9376)
+
 ## Descripción
 
 El **Monitor de Sistema** es una aplicación web diseñada para supervisar y visualizar en tiempo real el uso de recursos del sistema, incluyendo la CPU, la memoria y el disco. La aplicación también proporciona análisis históricos y alertas basadas en umbrales configurables para ayudar a mantener el sistema en un estado óptimo.
