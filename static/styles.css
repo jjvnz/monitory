@@ -1,27 +1,15 @@
 /* styles.css */
 
-/* Custom Styles for Progress Bar */
-.progress-container {
-    position: relative;
+.status-indicator {
+    height: 10px;
     width: 100%;
-    height: 1.5rem;
-    background-color: #e2e8f0; /* Gray-200 */
-    border-radius: 9999px;
+    border-radius: 5px;
 }
-.progress-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    border-radius: 9999px;
+
+.status-indicator.green {
+    background-color: #4caf50;
 }
-.progress-label {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    color: white;
-    font-weight: 700;
+
+.status-indicator.red {
+    background-color: #f44336;
 }
