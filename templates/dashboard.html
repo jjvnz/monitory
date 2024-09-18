@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Monitor de Recursos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-6 text-gray-900">Dashboard de Monitorización del Sistema</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <!-- CPU Usage Card -->
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Uso de CPU</h2>
+                <div id="cpuStatus" class="status-indicator"></div>
+                <canvas id="cpuChart" class="w-full"></canvas>
+            </div>
+
+            <!-- Memory Usage Card -->
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Uso de Memoria</h2>
+                <div id="memoryStatus" class="status-indicator"></div>
+                <canvas id="memoryChart" class="w-full"></canvas>
+            </div>
+
+            <!-- Disk Usage Card -->
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Uso de Disco</h2>
+                <div id="diskStatus" class="status-indicator"></div>
+                <canvas id="diskChart" class="w-full"></canvas>
+            </div>
+        </div>
+
+        <!-- Configuración de Alertas -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4">Configurar Alertas</h2>
+            <form id="alertsForm" class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div>
+                    <label for="cpuThreshold" class="block mb-2 text-sm font-medium text-gray-700">Umbral de CPU (%)</label>
+                    <input type="number" id="cpuThreshold" name="cpuThreshold" min="0" max="100" value="80" class="w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div>
+                    <label for="memoryThreshold" class="block mb-2 text-sm font-medium text-gray-700">Umbral de Memoria (%)</label>
+                    <input type="number" id="memoryThreshold" name="memoryThreshold" min="0" max="100" value="85" class="w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div>
+                    <label for="diskThreshold" class="block mb-2 text-sm font-medium text-gray-700">Umbral de Disco (%)</label>
+                    <input type="number" id="diskThreshold" name="diskThreshold" min="0" max="100" value="90" class="w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div class="col-span-3">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md">Guardar Configuración</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Personalizar Panel -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4">Personalizar Panel</h2>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <label class="flex items-center">
+                    <input type="checkbox" id="showCpu" checked class="mr-2">
+                    Mostrar CPU
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" id="showMemory" checked class="mr-2">
+                    Mostrar Memoria
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" id="showDisk" checked class="mr-2">
+                    Mostrar Disco
+                </label>
+            </div>
+        </div>
+
+        <!-- Historial de Métricas -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4">Historial de Métricas</h2>
+            <canvas id="historicalChart" class="w-full"></canvas>
+        </div>
+
+        <!-- Métricas de Procesos -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4">Métricas de Procesos</h2>
+            <div id="processMetrics" class="text-sm text-gray-700"></div>
+        </div>
+    </div>
+
+    <!-- Link to your static JS file -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
